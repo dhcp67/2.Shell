@@ -8,10 +8,15 @@ for (( i = 2; i*i <= 1000; i++)); do
 	done
 done
 sum=0
+ret=1
 for (( i = 2; i <= 1000; i++)); do
 	if [[ ${arr[$i]} -ne 1 ]]; then
 		sum=$[ sum+i ]
-		echo  $i
+		arr[$ret]=arr[$i]
+        ret=$[ ret+1 ]
 	fi
 done
-echo ${sum}
+for i in `seq 1 10`; do
+        echo ${arr[$i]}
+done
+echo $sum
