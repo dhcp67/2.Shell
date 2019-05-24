@@ -1,5 +1,5 @@
 #!/bin/bash
-for (( i = 0; i <= 1000; i++)); do
+for i in `seq 0 1000`; do
 	arr[$i]=0
 done
 for (( i = 2; i*i <= 1000; i++)); do
@@ -12,7 +12,7 @@ for (( i = 2; i*i <= 1000; i++)); do
 done
 sum=0
 ret=1
-for (( i = 2; i <= 1000; i++)); do
+for i in `seq 2 1000`; do
 	if [[ ${arr[$i]} -eq 0 ]]; then
 		sum=$[ ${sum}+${i} ]
 		arr[$ret]=$i
