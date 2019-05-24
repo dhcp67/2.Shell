@@ -6,8 +6,8 @@ while true; do
 done&
 while true; do
     if [[ `date +%M` = 00 ]]; then
-        export DISPLAY=:0.0 && notify-send "`date +%H`:`date +%M`"
+        export DISPLAY=:0.0 && notify-send "`date +%H:%M:%S`"
+        sleep 60
     fi
-    sleep 30
+    sleep 1
 done&
-        export DISPLAY=:0.0 && notify-send "`date +%H`:`date +%M`"
