@@ -1,28 +1,23 @@
 #!/bin/bash
-for i in `seq 0 1000`; do
-	arr[$i]=0
-done
-for (( i = 2; i*i <= 1000; i++)); do
-    if [[ ${arr[$i]} -eq 1 ]]; then
-        continue
+MAX=1000
+for i in `seq 2 ${MAX}`; do
+    if [[ ${arr[$i]} -ne 1 ]]; then
+        arr[0]=$[ ${arr[0]}+1 ]
+        arr[${arr[0]}]=$i
     fi
-	for(( j = i; i * j <= 1000; j++)); do
-		arr[$[ i*j ]]=1
+        for j in `seq 1 ${arr[0]}`; do
+		if [[ $[ ${arr[$j]}*$i ] -gt 1000 ]]; then
+            break
+        fi
+        arr[$[ ${arr[$j]}*$i ]]=1
+        if [[ $[ ${i}%${arr[$j]} ] -eq 0 ]]; then
+            break
+        fi
 	done
 done
-sum=0
-ret=1
-for i in `seq 2 1000`; do
-	if [[ ${arr[$i]} -eq 0 ]]; then
-		sum=$[ ${sum}+${i} ]
-		arr[$ret]=$i
-        ret=$[ ret+1 ]
-	fi
-done
-for i in `seq 1 1000`; do
-    if [[ ${arr[$i]} -eq 1 || ${arr[$i]} -eq 0 ]]; then
-        break
-    fi
+arr[$[ ${arr[0]}+1 ]]=0
+for (( i = 1; i <= arr[0]; i++ )); do
+    arr[$[ ${arr[0]}+1 ]]=$[ ${arr[$[ ${arr[0]}+1 ]]}+${arr[$i]} ]
     echo ${arr[$i]}
 done
-echo $sum
+echo ${arr[$[ ${arr[0]}+1 ]]}
