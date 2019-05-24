@@ -3,6 +3,7 @@ a=$1
 b=$2
 n=$[ a+b ]
 sum=0
+#expr
 for (( i=a; i < n; i++)); do
     mod=$[ i%100 ]
     ret=$[ i%400 ]
