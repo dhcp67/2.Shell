@@ -5,10 +5,10 @@ RestBegin=0
 
 function CheckMin() {
     TimeNow=`date +%s`
-    TimeBetween=$[ (${TimeNow} - ${TimeBegin}) / 60 ]
-    if [[ ${TimeBetween} -ge 45 ]]; then
+    TimeBetween=$[ (${TimeNow} - ${TimeBegin}) ]
+    if [[ ${TimeBetween} -ge 10 ]]; then
     echo "已经45分钟了，休息5分钟"
-    sleep 301
+    sleep 5
     TimeNow=`date +%s`
     TimeBetween=$[ ${TimeNow} - ${RestBegin} ]
     if [[ ${TimeBetween} -ge 5 ]]; then
@@ -27,7 +27,7 @@ function CheckZero() {
 }
 
 while [[ true ]]; do
-    sleep 40
+    sleep 5
     CheckMin
     RestBegin=`date +%s`
     TimeBegin=`date +%s`
