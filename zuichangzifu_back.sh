@@ -40,17 +40,17 @@ function FindDir() {
 }
 
 
-w=$#
-echo $w
-for (( i = 1; i < w; i++ ));do
-if [[  -d $i ]]; then
-	FindDir $i
-elif [[ -f $i ]]; then
-	Check=`FliterFile $i`
+
+
+if [[  -d $1 ]]; then
+	FindDir $1
+elif [[ -f $1 ]]; then
+	Check=`FliterFile $1`
 	if [[ ${Check} -eq 0 ]]; then
-		FindFile $i
+		FindFile $1
 	fi
 fi
 
 printf "MaxString=%s, Max=%d\n" ${MaxString} ${Max}
-done
+
+
