@@ -1,13 +1,14 @@
 #!/bin/bash
 while true; do
-    sleep 2700
+    sleep 5
     export DISPLAY=:0.0 && notify-send "休息5分钟"
-	sleep 300
+	sleep 5
+    export DISPLAY=:0.0 && notify-send "已经休息5分钟了"
 done&
 while true; do
-    if [[ `date +%M` = 00 ]]; then
+    ret=`date +%M`
+    if [[ ret = 55 ]]; then
         export DISPLAY=:0.0 && notify-send "`date +%H:%M:%S`"
-        sleep 60
     fi
     sleep 1
 done&
