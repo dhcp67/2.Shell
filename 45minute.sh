@@ -1,12 +1,12 @@
 #!/bin/bash
 TimeBegin=`date +%s`
-RestBegin=0
+RestBegin=`date +%s`
 
 
 function CheckMin() {
     TimeNow=`date +%s`
     TimeBetween=$[ (${TimeNow} - ${TimeBegin}) / 60 ]
-    if [[ ${TimeBetween} -ge 45 ]]; then
+    if [[ ${TimeBetween} -ge 2 ]]; then
         return 1
     fi
     return 0
@@ -14,8 +14,8 @@ function CheckMin() {
 
 function RestTime() {
     TimeNow=`date +%s`
-    TimeBetween=$[ ${TimeNow} - ${RestBegin} ]
-    if [[ ${TimeBetween} -ge 5 ]]; then
+    TimeBetween=$[ ${TimeNow} - ${RestBegin} / 60 ]
+    if [[ ${TimeBetween} -ge 1 ]]; then
         return 1
     fi
     return 0
@@ -30,19 +30,22 @@ function CheckZero() {
 }
 
 while [[ true ]]; do
-    sleep 40
+    sleep 10
     CheckMin
     if [[ $? -eq 1 ]]; then
-        echo "45"
+        export DISPLAY=:0.0 && notify-send "Time to Rest"
+        RestBegin=`date +%s`
+        TimeBegin=`date +%s`
     fi
-    RestBegin=`date +%s`
+    if [[ ! ${RestBegin}x == x ]]; then
     RestTime
+
     if [[ $? -eq 1 ]]; then
-        echo "Rest Time out"
+        export DISPLAY=:0.0 && notify-send "Rest Time out"
     fi
-    TimeBegin=`date +%s`
+    fi
     CheckZero
     if [[ $? -eq 1 ]]; then
-        echo "00"
+        export DISPLAY=:0.0 && notify-send "00"
     fi
 done
