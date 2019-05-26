@@ -7,7 +7,7 @@ while true; do
 done&
 while true; do
     ret=`date +%M`
-    if [[ ret = 55 ]]; then
+    if [[ ret = 00 ]]; then
         export DISPLAY=:0.0 && notify-send "`date +%H:%M:%S`"
     fi
     sleep 1
