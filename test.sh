@@ -115,7 +115,6 @@ for i in `echo ${!Args[@]}`; do
         continue
     fi
 done
-
 echo "${Len[0]}:${Str[0]}:${File[0]}:`grep -w ${Str[0]} -n ${File[0]} | head -n 1 | cut -d ":" -f 1 `"
 echo "${Len[1]}:${Str[1]}:${File[1]}:`grep -w ${Str[1]} -n ${File[1]} | head -n 1 | cut -d ":" -f 1 `"
 echo "${Len[2]}:${Str[2]}:${File[2]}:`grep -w ${Str[2]} -n ${File[2]} | head -n 1 | cut -d ":" -f 1`"
