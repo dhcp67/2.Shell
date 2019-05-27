@@ -5,7 +5,7 @@ for i in `seq 2 ${MAX}`; do
     if [[ ${arr[$i]} -ne 1 ]]; then
         arr[0]=$[ ${arr[0]}+1 ]
         arr[${arr[0]}]=$i
-        sum=$[ ${sum}+${arr[${arr[0]}]}  ]
+        sum=$[ ${sum}+${arr[${arr[0]}]} ]
         echo ${arr[${arr[0]}]}
 
     fi
