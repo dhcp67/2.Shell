@@ -1,0 +1,9 @@
+#!/bin/bash
+
+function CheckType() {
+   echo $1 | tr "." "\n"
+}
+
+File=$1
+
+CheckType ${File}

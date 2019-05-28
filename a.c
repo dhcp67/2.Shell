@@ -15,12 +15,8 @@ int main () {
     for (int i = 0; i <= 9; i++) {
         pid=fork();
         x = i;
+    printf(" %d\n", x);
         if(pid == 0) break;
-    }
-    if (pid != 0) {
-        
-    }
-    printf("%d\n", x);
-    sleep(100);
+    } 
     return 0;
 }
