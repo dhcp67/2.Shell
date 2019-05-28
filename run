@@ -1,9 +1,25 @@
 #!/bin/bash
 
+#0 c
+#1 c++
+#2 bash
 function CheckType() {
-   echo $1 | tr "." "\n"
-}
+   Type=`echo $1 | tr "." "\n" | tail -n 1`
+   if [[ ${Type} == "c" ]]; then
+       return 0
+    elif [[ ${Type} == "cpp" ]]
+        return 1
+    elif [[ ${Type} == "sh" ]]
+        return 2
+    else
+        exit
+   fi
 
 File=$1
 
-CheckType ${File}
+OutFile=`tmp`
+
+CheckType ${File} -o ${OutFile}.exe
+
+if [[ $? -eq 0 ]]; then
+    ${CC} ${File} -o tmp.exe
